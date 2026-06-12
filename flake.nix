@@ -11,11 +11,11 @@
     pkgs = import nixpkgs {inherit system;};
 
     pname = "zennotes";
-    version = "2.2.0";
+    version = "2.3.0";
 
     src = pkgs.fetchurl {
       url = "https://github.com/ZenNotes/zennotes/releases/download/v${version}/ZenNotes-${version}-linux-x86_64.AppImage";
-      sha256 = "sha256-9/amexk9rZlhs4RKndshO6hmRnmZV0t/e7qv9GWJVyI=";
+      sha256 = "sha256-IvFGK7n3KQVGETmt6hQUy+bZNTOCkfuwH8ifl4KTxxw=";
     };
 
     wrapped = pkgs.appimageTools.wrapType2 {inherit pname version src;};
