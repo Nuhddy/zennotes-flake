@@ -22,11 +22,22 @@
 
     extracted = pkgs.appimageTools.extractType2 {inherit pname version src;};
 
-    zennotes = wrapped;
+    desktopItem = pkgs.makeDesktopItem {
+      name = "zennotes";
+      desktopName = "ZenNotes";
+      genericName = "ZenNotes GUI app";
+      exec = "zennotes";
+      categories = ["Office"];
+    };
+
+    zennotes = pkgs.symlinkJoin {
+      name = "zennotes";
+      paths = [wrapped desktopItem];
+    };
 
     zennotesWithCli = pkgs.symlinkJoin {
       name = "zennotes-with-cli";
-      paths = [wrapped];
+      paths = [wrapped desktopItem];
 
       nativeBuildInputs = [pkgs.makeWrapper];
 
